@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【Kotlin Basics syntax】</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h2><a id="Package_definition_and_imports_1"></a>Package definition and imports</h2>
+<pre><code>package my.demo
+
+import kotlin.text.*
+//...
+</code></pre>
+<h2><a id="Print_to_the_standard_output_10"></a>Print to the standard output</h2>
+<pre><code>println("Hello world!")
+println(42
+</code></pre>
+<h2><a id="Functions_17"></a>Functions</h2>
+<pre><code>
+fun sum(a: Int, b: Int): Int {
+    return a + b
+}
+
+fun sum(a: Int, b: Int) = a + b
+
+fun printSum(a: Int, b: Int) {
+    println("sum of $a and $b is ${a + b}")
+}
+
+
+</code></pre>
+<h2><a id="Variables_34"></a>Variables</h2>
+<p>Read-only local variables are defined using the keyword val. They can be assigned a value only once.</p>
+<p>Variables that can be reassigned use the var keyword.</p>
+<p>You can declare variables at the top level.</p>
+<h2><a id="Creating_classes_and_instances_45"></a>Creating classes and instances</h2>
+<pre><code>class Rectangle(var height: Double, var length: Double) {
+    var perimeter = (height + length) * 2
+}
+
+val rectangle = Rectangle(5.0, 2.0)
+println("The perimeter is ${rectangle.perimeter}")
+</code></pre>
+<p>Inheritance between classes is declared by a colon （:）. Classes are final by default; to make a class inheritable, mark it as open.</p>
+<h2><a id="Comments_58"></a>Comments</h2>
+<pre><code>// This is an end-of-line comment
+
+/* This is a block comment
+   on multiple lines. */
+   
+/* The comment starts here
+/* contains a nested comment *⁠/
+and ends here. */
+
+</code></pre>
+<h2><a id="String_templates_72"></a>String templates</h2>
+<pre><code>var a = 1
+// simple name in template:
+val s1 = "a is $a" 
+
+a = 2
+// arbitrary expression in template:
+val s2 = "${s1.replace("is", "was")}, but now is $a"
+</code></pre>
+<h2><a id="Conditional_expressions_84"></a>Conditional expressions</h2>
+<pre><code>fun maxOf(a: Int, b: Int) = if (a &gt; b) a else b
+</code></pre>
+<h2><a id="for_loop_90"></a>for loop</h2>
+<pre><code>val items = listOf("apple", "banana", "kiwifruit")
+for (item in items) {
+    println(item)
+}
+val items = listOf("apple", "banana", "kiwifruit")
+for (index in items.indices) {
+    println("item at $index is ${items[index]}")
+}
+</code></pre>
+<h2><a id="while_loop_104"></a>while loop</h2>
+<pre><code>val items = listOf("apple", "banana", "kiwifruit")
+var index = 0
+while (index &lt; items.size) {
+    println("item at $index is ${items[index]}")
+    index++
+}
+</code></pre>
+<h2><a id="when_expression_114"></a>when expression</h2>
+<pre><code>fun describe(obj: Any): String =
+    when (obj) {
+        1          -&gt; "One"
+        "Hello"    -&gt; "Greeting"
+        is Long    -&gt; "Long"
+        !is String -&gt; "Not a string"
+        else       -&gt; "Unknown"
+    }
+</code></pre>
+<h2><a id="Ranges_127"></a>Ranges</h2>
+<p>Check if a number is within a range using in operator.</p>
+<pre><code>val x = 9
+val y = 9
+if (x in 1..y) {
+    println("fits in range")
+}
+
+</code></pre>
+<pre><code>val list = listOf("a", "b", "c")
+
+if (-1 !in 0..list.lastIndex) {
+    println("-1 is out of range")
+}
+if (list.size !in list.indices) {
+    println("list size is out of valid list indices range, too")
+}
+</code></pre>
+<p>over a progeression.</p>
+<pre><code>for (x in 1..10 step 2) {
+    print(x)
+}
+println()
+for (x in 9 downTo 0 step 3) {
+    print(x)
+}
+</code></pre>
+<h2><a id="Collections_162"></a>Collections</h2>
+<p>Check if a collection contains an object using in operator.</p>
+<pre><code>when {
+    "orange" in items -&gt; println("juicy")
+    "apple" in items -&gt; println("apple is fine too")
+}
+</code></pre>
+<h2><a id="Nullable_values_and_null_checks_173"></a>Nullable values and null checks</h2>
+<pre><code>// ...
+if (x == null) {
+    println("Wrong number format in arg1: '$arg1'")
+    return
+}
+if (y == null) {
+    println("Wrong number format in arg2: '$arg2'")
+    return
+}
+
+// x and y are automatically cast to non-nullable after null check
+
+</code></pre>
+<h2><a id="Type_checks_and_automatic_casts_190"></a>Type checks and automatic casts</h2>
+<p>The is operator checks if an expression is an instance of a type. If an immutable local variable or property is checked for a specific type, there’s no need to cast it explicitly:</p>
+<pre><code>fun getStringLength(obj: Any): Int? {
+    if (obj is String) {
+        // `obj` is automatically cast to `String` in this branch
+        return obj.length
+    }
+
+    // `obj` is still of type `Any` outside of the type-checked branch
+    return null
+}
+</code></pre>
+</div>
+</body>
+
+</html>
